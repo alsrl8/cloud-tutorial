@@ -20,6 +20,9 @@ jobs:
           service_account_key: ${{ secrets.GCP_SA_KEY }}
           export_default_credentials: true
 
+      - name: Activate Service Account
+        run: gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+
       - name: Deploy to VM
         run: |
           gcloud compute ssh fisrt-instance --zone=us-west1-b --project=lofty-seer-397218 --command="git pull"
