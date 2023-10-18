@@ -30,7 +30,7 @@ jobs:
 
       - name: Check current user on the instance
         run: |
-          gcloud compute ssh mingi4754song@$INSTANCE_NAME \
+          gcloud compute ssh mingi4754song2@$INSTANCE_NAME \
             --zone=$ZONE \
             --command="echo 'Current user is:' && whoami"          
 
