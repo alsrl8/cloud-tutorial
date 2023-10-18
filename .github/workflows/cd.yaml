@@ -25,11 +25,11 @@ jobs:
 
       - name: Copy Go code to instance
         run: |
-          gcloud compute scp ./ $INSTANCE_NAME:~/ \
+          gcloud compute scp ./main.go $INSTANCE_NAME:~/ \
             --zone=$ZONE
 
       - name: Execute Go code on instance
         run: |
           gcloud compute ssh $INSTANCE_NAME \
             --zone=$ZONE \
-            --command="go run ./"
+            --command="go run ./main.go"
