@@ -25,7 +25,7 @@ jobs:
 
       - name: Write Service Account Key to File
         run: |
-          echo "GCP_CREDENTIALS" > sa_key.json
+          echo "$GCP_CREDENTIALS" > sa_key.json
           cat sa_key.json
         env:
           GCP_CREDENTIALS: ${{ secrets.GCP_CREDENTIALS }}
