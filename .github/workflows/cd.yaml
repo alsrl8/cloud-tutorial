@@ -22,4 +22,5 @@ jobs:
 
       - name: Deploy to VM
         run: |
+          gcloud auth login
           gcloud compute ssh fisrt-instance --command="git pull"
