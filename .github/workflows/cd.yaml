@@ -1,23 +1,25 @@
-name: CD to GCP VM
+name: Deploy to Google Cloud VM
 
 on:
   push:
     branches:
-      - main  # or your default branch
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Deploy to GCP VM
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+      - name: Setup Google Cloud SDK
+        uses: google-github-actions/setup-gcloud@master
+        with:
+          project_id: lofty-seer-397218
+          service_account_key: ${{ secrets.GCP_SA_KEY }}
+          export_default_credentials: true
+
+      - name: Deploy to VM
         run: |
-          echo "$GCP_SA_KEY" > service-account.json
-          gcloud config set project lofty-seer-397218
-          gcloud auth activate-service-account --key-file=service-account.json
-          gcloud compute scp --recurse ./ first-instance:~/go/src/Keyflower --zone=us-west1-b
-          gcloud compute ssh first-instance --zone=us-west1-b --command="cd ~/go/src/Keyflower && go run *.go"
+          gcloud compute ssh fisrt-instance --command="git pull"
