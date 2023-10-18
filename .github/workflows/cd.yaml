@@ -30,7 +30,7 @@ jobs:
 
       - name: Copy Go code to instance
         run: |
-          gcloud compute scp ./main.go $INSTANCE_NAME:~/ \
+          gcloud compute scp ./main.go $INSTANCE_NAME:~/main.go \
             --zone=$ZONE
 
 #      - name: Check current user on the instance
