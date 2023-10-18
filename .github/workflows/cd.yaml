@@ -22,5 +22,4 @@ jobs:
 
       - name: Deploy to VM
         run: |
-          gcloud auth activate-service-account --key-file=- <<< "${{ secrets.GCP_SA_KEY }}"
-          gcloud compute ssh fisrt-instance --command="git pull"
+          gcloud compute ssh fisrt-instance --zone=us-west1-b --project=lofty-seer-397218 --command="git pull"
