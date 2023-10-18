@@ -21,7 +21,9 @@ jobs:
           export_default_credentials: true
 
       - name: Activate Service Account
-        run: gcloud auth activate-service-account --key-file=$GOOGLE_APPLICATION_CREDENTIALS
+        run: |
+          echo "${{ secrets.GCP_SA_KEY }}" > sa_key.json
+          gcloud auth activate-service-account --key-file=sa_key.json
 
       - name: Deploy to VM
         run: |
