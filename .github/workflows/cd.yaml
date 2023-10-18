@@ -42,4 +42,7 @@ jobs:
 
       - name: SSH and Run Commands on Instance
         run: |
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command="echo 'Hello from GitHub Actions!'"          
+          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command="echo 'Hello from GitHub Actions!'"
+
+      - name: Print Current Directory
+        run: pwd
