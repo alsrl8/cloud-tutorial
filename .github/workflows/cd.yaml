@@ -5,7 +5,6 @@ on:
     branches: [ "main" ]
 
 env:
-  PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   INSTANCE_NAME: fisrt-instance
   ZONE: us-west1-b
 
@@ -13,32 +12,10 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v2
+      - uses: 'actions/checkout@v3'
 
-      - name: Setup gcloud CLI
-        uses: google-github-actions/setup-gcloud@v0
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
         with:
-          project_id: lofty-seer-397218
-          service_account_key: ${{ secrets.GCP_CREDENTIALS }}
-          export_default_credentials: true
-
-#      - name: Check current user on the instance
-#        run: |
-#          gcloud compute ssh mingi4754song2@$INSTANCE_NAME \
-#            --zone=$ZONE \
-#            --command="echo 'Current user is:' && whoami"
-#
-      - name: Execute Go code on instance
-        run: |
-          gcloud compute ssh $INSTANCE_NAME \
-            --zone=$ZONE \
-            --command="go version"
-
-      - name: SSH and Run Commands on Instance
-        run: |
-          ps
-          gcloud compute ssh $INSTANCE_NAME --zone=$ZONE --command="echo 'Hello from GitHub Actions!'"
-
-      - name: Print Current Directory
-        run: pwd
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
