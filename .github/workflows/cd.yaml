@@ -18,5 +18,5 @@ jobs:
         run: |
           echo "$GCP_SA_KEY" > service-account.json
           gcloud auth activate-service-account --key-file=service-account.json
-          gcloud compute scp --recurse ./ your-instance-name:/path/on/your/instance --zone=your-zone
-          gcloud compute ssh your-instance-name --zone=your-zone --command="cd /path/on/your/instance && go run *.go"
+          gcloud compute scp --recurse ./ first-instance:~/go/src/Keyflower --zone=us-west1-b
+          gcloud compute ssh first-instance --zone=us-west1-b --command="cd ~/go/src/Keyflower && go run *.go"
