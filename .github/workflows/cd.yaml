@@ -1,0 +1,22 @@
+name: CD to GCP VM
+
+on:
+  push:
+    branches:
+      - main  # or your default branch
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Deploy to GCP VM
+        env:
+          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        run: |
+          echo "$GCP_SA_KEY" > service-account.json
+          gcloud auth activate-service-account --key-file=service-account.json
+          gcloud compute scp --recurse ./ your-instance-name:/path/on/your/instance --zone=your-zone
+          gcloud compute ssh your-instance-name --zone=your-zone --command="cd /path/on/your/instance && go run *.go"
