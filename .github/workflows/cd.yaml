@@ -17,6 +17,7 @@ jobs:
           GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
         run: |
           echo "$GCP_SA_KEY" > service-account.json
+          gcloud config set project lofty-seer-397218
           gcloud auth activate-service-account --key-file=service-account.json
           gcloud compute scp --recurse ./ first-instance:~/go/src/Keyflower --zone=us-west1-b
           gcloud compute ssh first-instance --zone=us-west1-b --command="cd ~/go/src/Keyflower && go run *.go"
