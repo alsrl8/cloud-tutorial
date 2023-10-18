@@ -28,16 +28,10 @@ jobs:
         with:
           credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
-#      - name: Authenticate with gcloud
-#        run: |
-#          gcloud auth activate-service-account --key-file=sa_key.json
-#        env:
-#          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-
-#      - name: Copy Go code to instance
-#        run: |
-#          gcloud compute scp ./main.go $INSTANCE_NAME:~/ \
-#            --zone=$ZONE
+      - name: Copy Go code to instance
+        run: |
+          gcloud compute scp ./main.go $INSTANCE_NAME:~/ \
+            --zone=$ZONE
 
 #      - name: Check current user on the instance
 #        run: |
