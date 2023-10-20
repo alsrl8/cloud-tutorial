@@ -25,8 +25,15 @@ jobs:
 
       - name: 'Transfer code to GCP VM'
         run: |
-          tar -czf mycode.tar.gz . # This will package your code into a tarball
-          gcloud compute scp mycode.tar.gz mingi4754song@fisrt-instance:~/ --zone=us-west1-b        
+          mkdir staging_dir
+          cp -r * staging_dir
+          cd staging_dir
+          tar -czf mycode.tzr.gz .
+          mv mycode.tar.gz ../
+          cd ..
+          ls
+#          tar -czf mycode.tar.gz . # This will package your code into a tarball
+          gcloud compute scp mycode.tar.gz mingi4754song@fisrt-instance:~/ --zone=us-west1-b
 
       - name: 'Run Something'
         run: |
