@@ -25,7 +25,8 @@ jobs:
 
       - name: 'Transfer code to GCP VM'
         run: |
-          gcloud compute scp test.txt mingi4754song@fisrt-instance:~/ --zone=us-west1-b
+          go build -o hello_world .
+          gcloud compute scp ./hello_world mingi4754song@fisrt-instance:~/ --zone=us-west1-b
 
       - name: 'Run Something'
         run: |
