@@ -25,14 +25,14 @@ jobs:
 
       - name: 'Transfer code to GCP VM'
         run: |
-               mkdir staging_dir
-               cp -r * staging_dir
-               cd staging_dir
-               tar -czf mycode.tzr.gz .
-               mv mycode.tar.gz ../
-               cd ..
-               ls
-               gcloud compute scp mycode.tar.gz mingi4754song@fisrt-instance:~/ --zone=us-west1-b
+          mkdir staging_dir
+          rsync -av --exclude=staging_dir . staging_dir/
+          cd staging_dir
+          tar -czf mycode.tzr.gz .
+          mv mycode.tar.gz ../
+          cd ..
+          ls
+          gcloud compute scp mycode.tar.gz mingi4754song@fisrt-instance:~/ --zone=us-west1-b
 
       - name: 'Run Something'
         run: |
