@@ -14,21 +14,15 @@ jobs:
     steps:
       - uses: 'actions/checkout@v3'
 
-#      - id: 'auth'
-#        name: 'Authenticate to Google Cloud'
-#        uses: 'google-github-actions/auth@v1'
-#        with:
-#          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+      - id: 'auth'
+        name: 'Authenticate to Google Cloud'
+        uses: 'google-github-actions/auth@v1'
+        with:
+          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
 
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
-        with:
-          version: '>= 363.0.0'
-
-      - name: 'Use gcloud CLI'
-        run: 'gcloud info'
 
       - name: 'Run Something'
         run: |
-          echo 'Hello world!'
-          pwd
+          gcloud compute ssh mingi4754song@fisrt-instance --zone=us-west1-b --command "ps"
