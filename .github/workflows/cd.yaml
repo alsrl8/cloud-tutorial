@@ -25,4 +25,4 @@ jobs:
 
       - name: 'Run Something'
         run: |
-          gcloud compute ssh mingi4754song@fisrt-instance --zone=us-west1-b --command "ps"
+          gcloud compute ssh mingi4754song@fisrt-instance --zone=us-west1-b --command "pwd"
