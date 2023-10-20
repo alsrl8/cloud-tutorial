@@ -31,3 +31,4 @@ jobs:
       - name: 'Run Something'
         run: |
           echo 'Hello world!'
+          pwd
