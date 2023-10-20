@@ -25,19 +25,9 @@ jobs:
         with:
           version: '>= 363.0.0'
 
-#      - id: 'upload-file'
-#        uses: 'google-github-actions/upload-cloud-storage@v1'
-#        with:
-#          path: '/path/to/file'
-#          destination: 'bucket-name/file'
-#
-#      - id: 'compute-ssh'
-#        uses: 'google-github-actions/ssh-compute@v0'
-#        with:
-#          instance_name: $INSTANCE_NAME
-#          zone: $ZONE
-#          ssh_private_key: '${{ secrets.GCP_SSH_PRIVATE_KEY }}'
-#          command: 'echo Hello world'
-
       - name: 'Use gcloud CLI'
         run: 'gcloud info'
+
+      - name: 'Run Something'
+        run: |
+          echo 'Hello world!'
