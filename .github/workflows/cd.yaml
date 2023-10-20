@@ -23,6 +23,11 @@ jobs:
       - name: 'Set up Cloud SDK'
         uses: 'google-github-actions/setup-gcloud@v1'
 
+      - name: 'Transfer code to GCP VM'
+        run: |
+          tar -czf mycode.tar.gz . # This will package your code into a tarball
+          gcloud compute scp mycode.tar.gz mingi4754song@fisrt-instance:~/ --zone=us-west1-b        
+
       - name: 'Run Something'
         run: |
           gcloud compute ssh mingi4754song@fisrt-instance --zone=us-west1-b --command "pwd"
